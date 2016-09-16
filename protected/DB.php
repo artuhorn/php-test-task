@@ -32,11 +32,11 @@ class DB
 
     protected function __construct()
     {
-        $json = file_get_contents(__DIR__ . './config.json');
+        $json = file_get_contents(__DIR__ . '/config.json');
         $config = json_decode($json, true);
 
         $dsn = 'mysql:dbname=' . $config['db']['dbname'] .
-            ';host=' . $config['db']['host'] . ':' . $config['db']['port'];
+            ';host=' . $config['db']['host'] . ';port=' . $config['db']['port'];
 
         $dbh = new PDO($dsn, $config['db']['login'], $config['db']['password']);
 
