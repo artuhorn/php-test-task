@@ -1,0 +1,70 @@
+{% extends '/layouts/base.twig' %}
+
+{% block title %}Редактирование записей{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <ul class="right">
+                    <li>Редактировать запись</li>
+                    <li><a href="/posts.php">Назад</a></li>
+                </ul>
+            </div>
+
+            <div class="col s12">
+                <div class="center-align">
+                    {% if post %}
+                        <h3>Редактировать запись #{{ post.getId() }}</h3>
+                        <p><i>Последнее обновление {{ post.formatDate(post.updated_at) }} в {{ post.formatTime(post.updated_at) }}</i></p>
+                    {% else %}
+                        <h3>Новая запись</h3>
+                    {% endif %}
+                </div>
+
+                <form action="/add.php" method="post" enctype="multipart/form-data">
+                    {% if not post.isNew() %}
+                        <div class="input-field col s12" hidden>
+                            <input id="id" type="text" name="id" value="{{ post.getId() }}">
+                            <label for="id">Id</label>
+                        </div>
+                    {% endif %}
+                    <div class="input-field col s12">
+                        <input id="title" type="text" name="title" value="{{ post.title }}">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="text" class="materialize-textarea" name="text">{{ post.text }}</textarea>
+                        <label for="text">Text</label>
+                    </div>
+                    <div class="file-field input-field">
+                        <div class="file-path-wrapper col s4">
+                            <input class="file-path validate disabled" type="text" placeholder="Изображение">
+                        </div>
+                        <div class="btn waves-effect waves-light">
+                            <span>Обзор...</span>
+                            <input type="file" name="image" accept="image/*">
+                        </div>
+                    </div>
+
+                    {% if post.image %}
+                        <div class="col s12">
+                            <img src="/upload/{{ post.image }}" width="300" alt="Post Image">
+                        </div>
+                    {% endif %}
+
+                    <div class="input-field col s12">
+                        <button class="btn btn-large waves-effect waves-light right red" type="submit">
+                            {% if post and not post.isNew() %}
+                                Обновить
+                            {% else %}
+                                Сохранить
+                            {% endif %}
+                            <i class="material-icons left">add</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

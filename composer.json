@@ -1,0 +1,13 @@
+{
+  "name": "test-task",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Artuhorn",
+      "email": "artuhorn@gmail.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "~1.0"
+  }
+}

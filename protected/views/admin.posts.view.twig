@@ -1,0 +1,45 @@
+{% extends '/layouts/base.twig' %}
+
+{% block title %}Панель администратора{% endblock %}
+
+{% block content %}
+    <div class="container ">
+        <div class="row">
+            <div class="col s12">
+                <div class="card material-table">
+                    <div class="table-header">
+                        <span class="table-title">Список постов</span>
+                        <div class="actions">
+                            <a href="/edit.php" class="waves-effect btn-flat nopadding"><i class="material-icons">add</i></a>
+                            <span class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></span>
+                        </div>
+                    </div>
+                    <table id="datatable" class="tablesorter highlight">
+                        <thead>
+                        <tr>
+                            <th>Заголовок</th>
+                            <th>Дата</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for post in posts %}
+                            <tr>
+                                <td>{{ post.title }}</td>
+                                <td>{{ post.formatDate(post.created_at) }} {{ post.formatTime(post.created_at) }}</td>
+                                <td>
+                                    <a href="/edit.php?id={{ post.getId() }}" class="light-blue-text">Редактировать</a>
+                                     |
+                                    <a href="/delete.php?id={{ post.getId() }}" class="red-text">Удалить</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
