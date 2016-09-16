@@ -22,7 +22,7 @@
                     {% endif %}
                 </div>
 
-                <form action="/add.php" method="post" enctype="multipart/form-data">
+                <form action="/save.php" method="post" enctype="multipart/form-data">
                     {% if not post.isNew() %}
                         <div class="input-field col s12" hidden>
                             <input id="id" type="text" name="id" value="{{ post.getId() }}">

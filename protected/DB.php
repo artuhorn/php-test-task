@@ -52,7 +52,6 @@ class DB
     {
         $sth = $this->dbh->prepare($query);
         $result = $sth->execute($params);
-        $this->lastId = $this->dbh->lastInsertId();
 
         return $result;
     }
@@ -67,12 +66,16 @@ class DB
     {
         $sth = $this->dbh->prepare($query);
         $success = $sth->execute($params);
-        $this->lastId = $this->dbh->lastInsertId();
 
         if (!$success) {
             return [];
         }
 
         return $sth->fetchAll(PDO::FETCH_CLASS, $class);
+    }
+
+    public function getLastId()
+    {
+        return $this->dbh->lastInsertId();
     }
 }

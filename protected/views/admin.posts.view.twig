@@ -2,6 +2,10 @@
 
 {% block title %}Панель администратора{% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="/css/material-table.css">
+{% endblock %}
+
 {% block content %}
     <div class="container ">
         <div class="row">
@@ -14,12 +18,12 @@
                             <span class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></span>
                         </div>
                     </div>
-                    <table id="datatable" class="tablesorter highlight">
+                    <table id="datatable" class="highlight" data-order='[[ 1, "desc" ]]'>
                         <thead>
                         <tr>
                             <th>Заголовок</th>
                             <th>Дата</th>
-                            <th></th>
+                            <th data-orderable="false"></th>
                         </tr>
                         </thead>
 
@@ -42,4 +46,9 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/material-table.js"></script>
 {% endblock %}

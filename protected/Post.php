@@ -150,7 +150,7 @@ class Post
         $db = DB::instance();
         $result = $db->execute($query, $params);
         if ($result === true) {
-            $this->id = $db->lastId;
+            $this->id = $db->getLastId();
         }
 
         return $result;
